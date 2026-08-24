@@ -119,7 +119,10 @@ pause
 
 
 
+
 ## OUTPUT
+<img width="1298" height="345" alt="image" src="https://github.com/user-attachments/assets/f8cfe47a-f9fa-46ee-ab6c-b77921f0294b" />
+
 
 
 
@@ -130,20 +133,58 @@ Display whether the number is odd or not.
 Ask the user if they want to check another number.
 Repeat the process if the user enters Y, and exit with a thank-you message if the user enters N.
 Handle invalid inputs for the continuation prompt (Y/N) gracefully.
+## CODE
+```
+@echo off
+:START
+set /p num=Enter a number: 
+
+set /a rem=%num% %% 2
+
+if %rem%==1 (
+    echo The number %num% is ODD
+) else (
+    echo The number %num% is NOT ODD
+)
+
+:CHOICE
+set /p choice=Do you want to check another number? (Y/N): 
+
+if /I "%choice%"=="Y" goto START
+if /I "%choice%"=="N" goto END
+
+echo Invalid choice. Please enter Y or N.
+goto CHOICE
+:END
+echo Thank you!
+pause
+```
 
 
 
 ## OUTPUT
+<img width="1476" height="471" alt="image" src="https://github.com/user-attachments/assets/b978e23b-d420-466a-9e26-92874c550038" />
+
 
 
 
 
 Write a batch file that uses a FOR loop to iterate over a sequence of numbers (1 to 5) and displays each number with the label Number:. The output should pause at the end.
+## CODE
+```
+@echo off
+for %%i in (1 2 3 4 5) do (
+    echo Number: %%i
+)
+pause
+```
 
 
 
 
 ## OUTPUT
+<img width="1472" height="397" alt="image" src="https://github.com/user-attachments/assets/1df85c09-1d59-47f0-ab71-40ee939c8e2a" />
+
 
 
 
@@ -155,8 +196,20 @@ Use the IF EXIST conditional statement.
 Make sure the script works for files located in the same directory as the batch file.
 Use pause to keep the command window open after displaying the message.
 Expected Output (if the file exists):
+## CODE
+```
+@echo off
+if exist sample.txt (
+    echo sample.txt exists
+) else (
+    echo sample.txt does not exist
+)
+pause
+```
 
 ## OUTPUT
+<img width="1702" height="60" alt="image" src="https://github.com/user-attachments/assets/2dd081ce-3f38-4a49-9910-7166829a8343" />
+
 
 
 Write a batch script that displays a simple menu with three options:
@@ -164,9 +217,54 @@ Say Hello – Displays the message Hello, World!
 Create a File – Creates a file named newfile.txt with the content This is a new file
 Exit – Exits the script with a goodbye message
 The script should repeatedly display the menu until the user chooses to exit. Use goto statements to handle menu navigation.
+## CODE
+```
+@echo off
+:MENU
+cls
+echo ===== MENU =====
+echo 1. Say Hello
+echo 2. Create a File
+echo 3. Exit
+echo =================
+set /p choice=Enter your choice: 
+
+if "%choice%"=="1" goto HELLO
+if "%choice%"=="2" goto CREATE
+if "%choice%"=="3" goto EXIT
+
+echo Invalid choice!
+pause
+goto MENU
+
+:HELLO
+echo Hello, World!
+pause
+goto MENU
+
+:CREATE
+echo This is a new file > newfile.txt
+echo File created successfully!
+pause
+goto MENU
+:EXIT
+echo Goodbye!
+pause
+exit
+```
 
 
-## OUTPUT
+
+## OUTPUT 1
+<img width="1919" height="212" alt="image" src="https://github.com/user-attachments/assets/d0bc2301-a74f-4a04-ad81-dfe661c3af7d" />
+## OUTPUT 2
+<img width="1919" height="231" alt="image" src="https://github.com/user-attachments/assets/307433b5-fe2d-4f39-95e0-cd0b48a406a4" />
+## OUTPUT 3
+<img width="1919" height="213" alt="image" src="https://github.com/user-attachments/assets/001129c8-c70d-40ef-a847-36cb893bcb99" />
+
+
+
+
 
 
 
